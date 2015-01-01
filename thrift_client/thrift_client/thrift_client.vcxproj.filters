@@ -1,0 +1,63 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <ItemGroup>
+    <Filter Include="Source Files">
+      <UniqueIdentifier>{4FC737F1-C7A5-4376-A066-2A32D752A2FF}</UniqueIdentifier>
+      <Extensions>cpp;c;cc;cxx;def;odl;idl;hpj;bat;asm;asmx</Extensions>
+    </Filter>
+    <Filter Include="Header Files">
+      <UniqueIdentifier>{93995380-89BD-4b04-88EB-625FBE52EBFB}</UniqueIdentifier>
+      <Extensions>h;hh;hpp;hxx;hm;inl;inc;xsd</Extensions>
+    </Filter>
+    <Filter Include="Resource Files">
+      <UniqueIdentifier>{67DA6AB6-F800-4c08-8B7A-83BB121AAD01}</UniqueIdentifier>
+      <Extensions>rc;ico;cur;bmp;dlg;rc2;rct;bin;rgs;gif;jpg;jpeg;jpe;resx;tiff;tif;png;wav;mfcribbon-ms</Extensions>
+    </Filter>
+    <Filter Include="gen_cpp">
+      <UniqueIdentifier>{908ff0a2-3a4b-4a6f-bdc2-614b7fc34e0a}</UniqueIdentifier>
+    </Filter>
+  </ItemGroup>
+  <ItemGroup>
+    <ClCompile Include="..\CppClient.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="..\gen-cpp\Calculator.cpp">
+      <Filter>gen_cpp</Filter>
+    </ClCompile>
+    <ClCompile Include="..\gen-cpp\shared_constants.cpp">
+      <Filter>gen_cpp</Filter>
+    </ClCompile>
+    <ClCompile Include="..\gen-cpp\shared_types.cpp">
+      <Filter>gen_cpp</Filter>
+    </ClCompile>
+    <ClCompile Include="..\gen-cpp\SharedService.cpp">
+      <Filter>gen_cpp</Filter>
+    </ClCompile>
+    <ClCompile Include="..\gen-cpp\tutorial_constants.cpp">
+      <Filter>gen_cpp</Filter>
+    </ClCompile>
+    <ClCompile Include="..\gen-cpp\tutorial_types.cpp">
+      <Filter>gen_cpp</Filter>
+    </ClCompile>
+  </ItemGroup>
+  <ItemGroup>
+    <ClInclude Include="..\gen-cpp\Calculator.h">
+      <Filter>gen_cpp</Filter>
+    </ClInclude>
+    <ClInclude Include="..\gen-cpp\shared_constants.h">
+      <Filter>gen_cpp</Filter>
+    </ClInclude>
+    <ClInclude Include="..\gen-cpp\shared_types.h">
+      <Filter>gen_cpp</Filter>
+    </ClInclude>
+    <ClInclude Include="..\gen-cpp\SharedService.h">
+      <Filter>gen_cpp</Filter>
+    </ClInclude>
+    <ClInclude Include="..\gen-cpp\tutorial_constants.h">
+      <Filter>gen_cpp</Filter>
+    </ClInclude>
+    <ClInclude Include="..\gen-cpp\tutorial_types.h">
+      <Filter>gen_cpp</Filter>
+    </ClInclude>
+  </ItemGroup>
+</Project>

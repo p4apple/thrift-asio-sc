@@ -1,0 +1,29 @@
+# /
+/Makefile
+/config.status
+/config.log
+/sphinx-min.conf.dist
+/sphinx.conf.dist
+/bin
+/junk
+/*.suo
+/*.ncb
+/*.sdf
+/.hg
+
+
+
+# /win/
+/win/*.user
+/win/*.filters
+
+Debug
+/RELEASE
+*.ncb
+*.plg
+*.opt
+*.aps
+*.obj
+*.sdf
+
+*/build/*
