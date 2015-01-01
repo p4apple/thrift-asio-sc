@@ -53,50 +53,34 @@ class test_Shared : public SharedServiceCobClient
 public:
 	test_Shared(boost::shared_ptr< ::apache::thrift::async::TAsyncChannel> channel, TProtocolFactory* protocolFactory)
 		: SharedServiceCobClient(channel, protocolFactory)
-		, mysemaphore( 1 )
-	{
-		
-	};
-
-
-
+		, mysemaphore(1)
+	{ };
 	virtual void completed__(bool success)
 	{
 		if (success)
 		{
-			printf("completed \n" );   // 输出返回结果
-			std::cout << res<< std::endl; 
+			printf("completed \n");   // 输出返回结果
+			std::cout << res << std::endl;
 		}
 		else
-		{
 			printf("failed to respone\n");
-		}
-		fflush(0);
-
-		//itrans_->close();
-		//otrans_->close();
-		//itrans_->resetBuffer(); 
-		//otrans_->resetBuffer(); 
 		
+		fflush(0);
 	};
-
-	int send_key; 
-	SharedStruct res; 
-	boost::interprocess::interprocess_semaphore  mysemaphore; 
-
+	int send_key;
+	SharedStruct res;
+	boost::interprocess::interprocess_semaphore  mysemaphore;
 };
 
-
 // callback function
-
 static void my_recv_sendString(SharedServiceCobClient* client)
 {
-	client->recv_getStruct(dynamic_cast<test_Shared *>(client)->res); 
-	std::cout << " get result  " << std::endl; 
+	client->recv_getStruct(dynamic_cast<test_Shared *>(client)->res);
+	std::cout << " get result  " << std::endl;
 	dynamic_cast<test_Shared *>(client)->mysemaphore.post();
 };
 
-static void sendString(test_Shared& client 	)
+static void sendString(test_Shared& client)
 {
 	printf("sendString start\n");
 	tcxx::function<void(SharedServiceCobClient* client)> cob = bind(&my_recv_sendString, _1);
@@ -106,142 +90,33 @@ static void sendString(test_Shared& client 	)
 
 
 
-void DoSimpleTest( const std::string& host, int port 	)
+void DoSimpleTest(const std::string& host, int port)
 {
-	printf("running DoSimpleTest( %s, %d) ...\n",host.c_str(), port);
-
-
-
-	boost::shared_ptr< ::apache::thrift::async::TAsyncChannel>  channel1(new ::apache::thrift::async_asio::TAsioClientChannel(host, "/", host.c_str(), port ));
-	boost::shared_ptr< TBinaryProtocolFactory > ptr_btFactory(new TBinaryProtocolFactory() );
-
+	printf("running DoSimpleTest( %s, %d) ...\n", host.c_str(), port);
+	boost::shared_ptr< ::apache::thrift::async::TAsyncChannel>  channel1(new ::apache::thrift::async_asio::TAsioClientChannel(host, "/", host.c_str(), port));
+	boost::shared_ptr< TBinaryProtocolFactory > ptr_btFactory(new TBinaryProtocolFactory());
 	{
-
-		test_Shared client1(channel1, ptr_btFactory.get()  );
-
-		client1.send_key = 1; 
+		test_Shared client1(channel1, ptr_btFactory.get());
+		client1.send_key = 1;
 		client1.mysemaphore.wait();
-		//client1.mysemaphore.wait();
 		sendString(client1);   // 发送第一个请求
-		//client1.mysemaphore.wait();
-		//sendString(client1);   // 发送第一个请求
-		//client1.mysemaphore.wait();
-		//sendString(client1);   // 发送第一个请求
-		//client1.mysemaphore.wait();
-		//sendString(client1);   // 发送第一个请求
-		//client1.mysemaphore.wait();
-		//sendString(client1);   // 发送第一个请求
-		//client1.mysemaphore.wait();
-		//sendString(client1);   // 发送第一个请求
 		client1.mysemaphore.wait();
-		//boost::this_thread::sleep_for(boost::chrono::seconds(10));
-
 	}
-
 	std::cout << "start new  quest . " << std::endl;
-
 	{
-
-		test_Shared client1(channel1, ptr_btFactory.get() );
+		test_Shared client1(channel1, ptr_btFactory.get());
 		client1.send_key = 2;
 		client1.mysemaphore.wait();
 		sendString(client1);   // 发送第一个请求
-		//client1.mysemaphore.wait();
-		//sendString(client1);   // 发送第一个请求
-		//client1.mysemaphore.wait();
-		//sendString(client1);   // 发送第一个请求
-		//client1.mysemaphore.wait();
-		//sendString(client1);   // 发送第一个请求
-		//client1.mysemaphore.wait();
-		//sendString(client1);   // 发送第一个请求
-		//client1.mysemaphore.wait();
-		//sendString(client1);   // 发送第一个请求
 		client1.mysemaphore.wait();
-		//boost::this_thread::sleep_for(boost::chrono::seconds(10));
-
 	}
-
-	std::cout << "start new  quest . " << std::endl;
-	{
-
-		test_Shared client1(channel1, ptr_btFactory.get() );
-		client1.send_key = 3;
-		client1.mysemaphore.wait();
-		sendString(client1);   // 发送第一个请求
-		//client1.mysemaphore.wait();
-		//sendString(client1);   // 发送第一个请求
-		//client1.mysemaphore.wait();
-		//sendString(client1);   // 发送第一个请求
-		//client1.mysemaphore.wait();
-		//sendString(client1);   // 发送第一个请求
-		//client1.mysemaphore.wait();
-		//sendString(client1);   // 发送第一个请求
-		//client1.mysemaphore.wait();
-		//sendString(client1);   // 发送第一个请求
-		client1.mysemaphore.wait();
-		//boost::this_thread::sleep_for(boost::chrono::seconds(10));
-
-	}
-
-	std::cout << "start new  quest . " << std::endl;
-	{
-
-		test_Shared client1(channel1, ptr_btFactory.get());
-		client1.send_key = 4;
-		client1.mysemaphore.wait();
-		sendString(client1);   // 发送第一个请求
-		//client1.mysemaphore.wait();
-		//sendString(client1);   // 发送第一个请求
-		//client1.mysemaphore.wait();
-		//sendString(client1);   // 发送第一个请求
-		//client1.mysemaphore.wait();
-		//sendString(client1);   // 发送第一个请求
-		//client1.mysemaphore.wait();
-		//sendString(client1);   // 发送第一个请求
-		//client1.mysemaphore.wait();
-		//sendString(client1);   // 发送第一个请求
-		client1.mysemaphore.wait();
-		//boost::this_thread::sleep_for(boost::chrono::seconds(10));
-
-	}
-
-
 	printf("done DoSimpleTest().\n");
-
-	return; 
+	return;
 }
-
-
-
-void mytest(  int i )
-{
-	std::cout <<  " thread test " << i << std::endl; 
-}
-
 int main(int argc, char* argv[])
 {
-
-#ifdef WIN32
-
-	WORD    version(MAKEWORD(2, 2));
-	WSAData data = { 0 };
-
-	int error(WSAStartup(version, &data));
-	if (error != 0)
-	{
-		BOOST_ASSERT(false);
-		throw std::runtime_error("Failed to initialise Winsock.");
-	}
-
-#endif 
-
-	string ip = "127.0.0.1"; 
-	//boost::thread  mythread( DoSimpleTest ,  ip , 14488 ); 
-	//void mytest()
-	//boost::thread  mythread(mytest , 1 );
-	DoSimpleTest(ip, 14488); 
-	//boost::this_thread::sleep_for( boost::chrono::seconds(10) ); 
-	//DoSimpleTest("127.0.0.1", 14488);
+	string ip = "127.0.0.1";
+	DoSimpleTest(ip, 14488);
 	return 0;
 
 }
