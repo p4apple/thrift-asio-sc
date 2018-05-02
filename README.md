@@ -20,6 +20,7 @@ thrift --gen cpp:cob_style 	tutorial.thrift
 
 客户端例子：
 /////////////////////////////////////////////////////////////////////////////
+```
 #include <iostream>
 
 #include <boost/asio.hpp>
@@ -121,10 +122,10 @@ int main(int argc, char* argv[])
 	return 0;
 
 }
-
+```
 服务端例子：
 //////////////////////////////////////////////////////////////////////////////////
-
+```
 #include <thrift/concurrency/ThreadManager.h>
 #include <thrift/concurrency/StdThreadFactory.h>
 #include <thrift/protocol/TBinaryProtocol.h>
@@ -188,9 +189,9 @@ int main(int argc, char **argv) {
 	server.serve();
 	return 0;
 }
-
+```
 //////////////////////////////////////////////////////////////////////////////////////////
-例子的编译方式间 CMakelists.txt 文件。 
+例子的编译方式见CMakelists.txt 文件。 
 
 
 
